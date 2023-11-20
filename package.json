@@ -1,6 +1,7 @@
 {
   "name": "my-app11",
   "version": "0.1.0",
+  "homepage": "https://tungphan2823.github.io/company-puzzle",
   "private": true,
   "dependencies": {
     "@jaredreisinger/react-crossword": "^5.2.0",
@@ -11,6 +12,7 @@
     "@types/node": "^16.18.62",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "gh-pages": "^6.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
