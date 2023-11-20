@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/company-puzzle/static/css/main.53b9f2b2.css",
+    "main.js": "/company-puzzle/static/js/main.5cc874e6.js",
+    "static/media/NCB1.png": "/company-puzzle/static/media/NCB1.5cc51b0e3faf3b96ba15.png",
+    "static/media/Teller.png": "/company-puzzle/static/media/Teller.855339f4905e3b530970.png",
+    "index.html": "/company-puzzle/index.html",
+    "main.53b9f2b2.css.map": "/company-puzzle/static/css/main.53b9f2b2.css.map",
+    "main.5cc874e6.js.map": "/company-puzzle/static/js/main.5cc874e6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.53b9f2b2.css",
+    "static/js/main.5cc874e6.js"
+  ]
+}
