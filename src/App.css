@@ -1,6 +1,5 @@
 .App {
   text-align: center;
- 
 }
 
 .App-logo {
@@ -37,11 +36,12 @@
     transform: rotate(360deg);
   }
 }
-.page{
-  
-  background-image: url(./img/NCB1.png),url(./img/Teller.png) ;
+.page {
+  background-image: url(./img/NCB1.png), url(./img/Teller.png);
   background-size: 400px 130px;
-  background-position: 10% 10%,90% 10% ;
+  background-position:
+    10% 10%,
+    90% 15%;
   background-repeat: no-repeat;
   justify-content: center;
   align-items: center;
@@ -49,8 +49,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
-.headerPage{
+.headerPage {
   font-size: 2rem;
 }

@@ -31,7 +31,9 @@ import "./App.css";
 //     },
 //   },
 // };
+// BƯỚC 1: DỮ LIỆU ĐƯA VÀO ĐÂY
 const data = {
+  //HÀNG NGANG
   across: {
     1: {
       clue: "one plus one",
@@ -90,6 +92,7 @@ const data = {
     // Add more across clues as needed
   },
   down: {
+    // HÀNG DỌC
     10: {
       clue: "popular programming language",
       answer: "NGUYÊNĐÁN",
@@ -100,8 +103,6 @@ const data = {
   },
 };
 
-
-
 const Page = styled.div`
   padding: 2em;
   gridbackground: rgb(255, 0, 0);
@@ -111,24 +112,21 @@ const Header = styled.h1`
   margin-bottom: 1em;
 `;
 
-const Commands = styled.div`
-`;
+const Commands = styled.div``;
 
 const Command = styled.button`
   margin-right: 1em;
-  
 `;
 
 const CrosswordMessageBlock = styled.div`
   margin: 2em 0 4em;
-  
+
   gap: 2em;
- 
 `;
 
 const CrosswordWrapper = styled.div`
   max-width: 30em;
-  
+
   /* and some fun making use of the defined class names */
   .crossword.correct {
     rect {
@@ -166,18 +164,15 @@ const CrosswordProviderWrapper = styled(CrosswordWrapper)`
   max-width: 80em;
   display: flex;
   gap: 1em;
-  
+
   z-index: -1;
 
   .grid {
     width: 60em;
-    
-   padding-top:5rem;
-   
+
+    padding-top: 6rem;
   }
 `;
-
-
 
 // in order to make this a more-comprehensive example, and to vet Crossword's
 // features, we actually implement a fair amount...
@@ -230,7 +225,7 @@ function App() {
     (direction, number, answer) => {
       addMessage(`onCorrect: "${direction}", "${number}", "${answer}"`);
     },
-    [addMessage]
+    [addMessage],
   );
 
   // onLoadedCorrect is called with an array of the already-correct answers,
@@ -244,12 +239,12 @@ function App() {
         `onLoadedCorrect:\n${answers
           .map(
             ([direction, number, answer]) =>
-              `    - "${direction}", "${number}", "${answer}"`
+              `    - "${direction}", "${number}", "${answer}"`,
           )
-          .join("\n")}`
+          .join("\n")}`,
       );
     },
-    [addMessage]
+    [addMessage],
   );
 
   // onCrosswordCorrect is called with a truthy/falsy value.
@@ -259,24 +254,23 @@ function App() {
     (isCorrect) => {
       addMessage(`onCrosswordCorrect: ${JSON.stringify(isCorrect)}`);
     },
-    [addMessage]
+    [addMessage],
   );
 
-  
-
   // Update your existing revealRowAnswer function
- 
 
   // onCellChange is called with the row, column, and character.
   const onCellChange = useCallback<Required<CrosswordProps>["onCellChange"]>(
     (row, col, char) => {
       addMessage(`onCellChange: "${row}", "${col}", "${char}"`);
     },
-    [addMessage]
+    [addMessage],
   );
 
   // all the same functionality, but for the decomposed CrosswordProvider
   const crosswordProvider = useRef<CrosswordProviderImperative>(null);
+
+  // BƯỚC 2: ĐIỀN CÂU LỆNH RA ĐÁP ÁN TỪNG DÒNG (SỐ CỦA HÀNG DỌC,SỐ CỦA HÀNG NGANG, TỪ ĐIỀN VÀO)
   const fillAnswer1 = useCallback<React.MouseEventHandler>((event) => {
     crosswordProvider.current?.setGuess(0, 5, "X");
     crosswordProvider.current?.setGuess(0, 6, "Ô");
@@ -304,7 +298,6 @@ function App() {
     crosswordProvider.current?.setGuess(2, 5, "h");
     crosswordProvider.current?.setGuess(2, 6, "đ");
     crosswordProvider.current?.setGuess(2, 7, "u");
-   
   }, []);
   const fillAnswer4 = useCallback<React.MouseEventHandler>((event) => {
     crosswordProvider.current?.setGuess(3, 5, "c");
@@ -313,8 +306,6 @@ function App() {
     crosswordProvider.current?.setGuess(3, 8, "n");
     crosswordProvider.current?.setGuess(3, 9, "ê");
     crosswordProvider.current?.setGuess(3, 10, "u");
-  
-    
   }, []);
 
   const fillAnswer5 = useCallback<React.MouseEventHandler>((event) => {
@@ -325,9 +316,7 @@ function App() {
     crosswordProvider.current?.setGuess(4, 6, "I");
     crosswordProvider.current?.setGuess(4, 7, "Ê");
     crosswordProvider.current?.setGuess(4, 8, "N");
-    
   }, []);
-
 
   const fillAnswer6 = useCallback<React.MouseEventHandler>((event) => {
     crosswordProvider.current?.setGuess(5, 0, "N");
@@ -347,7 +336,6 @@ function App() {
     crosswordProvider.current?.setGuess(6, 7, "Đ");
     crosswordProvider.current?.setGuess(6, 8, "Ố");
     crosswordProvider.current?.setGuess(6, 9, "I");
-    
   }, []);
 
   const fillAnswer8 = useCallback<React.MouseEventHandler>((event) => {
@@ -358,9 +346,7 @@ function App() {
     crosswordProvider.current?.setGuess(7, 10, "O");
     crosswordProvider.current?.setGuess(7, 11, "A");
     crosswordProvider.current?.setGuess(7, 12, "N");
-   
   }, []);
-
 
   const fillAnswer9 = useCallback<React.MouseEventHandler>((event) => {
     crosswordProvider.current?.setGuess(8, 5, "B");
@@ -374,32 +360,23 @@ function App() {
     crosswordProvider.current?.setGuess(8, 13, "N");
   }, []);
 
-
-
   const fillAnswer10 = useCallback<React.MouseEventHandler>((event) => {
-    crosswordProvider.current?.setGuess(9, 7, "g");
-    crosswordProvider.current?.setGuess(9, 8, "i");
-    crosswordProvider.current?.setGuess(9, 9, "a");
-    crosswordProvider.current?.setGuess(9, 10, "o");
-    crosswordProvider.current?.setGuess(9, 11, "t");
-    crosswordProvider.current?.setGuess(9, 12, "h");
-    crosswordProvider.current?.setGuess(9, 13, "ừ");
-    crosswordProvider.current?.setGuess(9, 14, "a");
+    crosswordProvider.current?.setGuess(0, 7, "N");
+    crosswordProvider.current?.setGuess(1, 7, "G");
+    crosswordProvider.current?.setGuess(2, 7, "U");
+    crosswordProvider.current?.setGuess(3, 7, "Y");
+    crosswordProvider.current?.setGuess(4, 7, "Ê");
+    crosswordProvider.current?.setGuess(5, 7, "N");
+    crosswordProvider.current?.setGuess(6, 7, "Đ");
+    crosswordProvider.current?.setGuess(7, 7, "Á");
+    crosswordProvider.current?.setGuess(8, 7, "N");
   }, []);
-
-
-
- 
-
-
-
-
 
   const fillAllAnswersProvider = useCallback<React.MouseEventHandler>(
     (event) => {
       crosswordProvider.current?.fillAllAnswers();
     },
-    []
+    [],
   );
 
   const resetProvider = useCallback<React.MouseEventHandler>((event) => {
@@ -416,7 +393,7 @@ function App() {
     (event) => {
       setMessagesProvider([]);
     },
-    []
+    [],
   );
 
   const addMessageProvider = useCallback((message: string) => {
@@ -438,7 +415,7 @@ function App() {
     (direction, number, answer) => {
       addMessageProvider(`onCorrect: "${direction}", "${number}", "${answer}"`);
     },
-    [addMessageProvider]
+    [addMessageProvider],
   );
 
   // onLoadedCorrect is called with an array of the already-correct answers,
@@ -452,12 +429,12 @@ function App() {
         `onLoadedCorrect:\n${answers
           .map(
             ([direction, number, answer]) =>
-              `    - "${direction}", "${number}", "${answer}"`
+              `    - "${direction}", "${number}", "${answer}"`,
           )
-          .join("\n")}`
+          .join("\n")}`,
       );
     },
-    [addMessageProvider]
+    [addMessageProvider],
   );
 
   // onCrosswordCorrect is called with a truthy/falsy value.
@@ -467,7 +444,7 @@ function App() {
     (isCorrect) => {
       addMessageProvider(`onCrosswordCorrect: ${JSON.stringify(isCorrect)}`);
     },
-    [addMessageProvider]
+    [addMessageProvider],
   );
 
   // onCellChange is called with the row, column, and character.
@@ -477,77 +454,58 @@ function App() {
     (row, col, char) => {
       addMessageProvider(`onCellChange: "${row}", "${col}", "${char}"`);
     },
-    [addMessageProvider]
+    [addMessageProvider],
   );
-
- 
-
+  // BƯỚC 3: ĐIỀN CÂU LỆNH VỪA NHẬP Ở BƯỚC 2 VÀO:
+  // <Command onClick={CÂU LỆNH }>Hiện đáp án </Command>
+  // VÍ DỤ <Command onClick={fillAnswer10}>Hiện đáp án 10</Command>
   return (
     <div className="page">
-    <Page >
-      <Header className="headerPage">PHẦN THI VƯỢT QUA THỬ THÁCH</Header>
-      
+      <Page>
+        <Header className="headerPage">PHẦN THI VƯỢT QUA THỬ THÁCH</Header>
 
-      <CrosswordMessageBlock>
-      <Commands>
-        <Command onClick={fillAnswer1}>
-          Hiện đáp án 1
-        </Command>
-        <Command onClick={fillAnswer2}>
-          Hiện đáp án 2
-        </Command>
-        <Command onClick={fillAnswer3}>
-          Hiện đáp án 3
-        </Command>
-        <Command onClick={fillAnswer4}>
-          Hiện đáp án 4
-        </Command>
-        <Command onClick={fillAnswer5}>
-          Hiện đáp án 5
-        </Command>
-        <Command onClick={fillAnswer6}>
-          Hiện đáp án 6
-        </Command>
-        <Command onClick={fillAnswer7}>
-          Hiện đáp án 7
-        </Command>
-        <Command onClick={fillAnswer8}>
-          Hiện đáp án 8
-        </Command>
-        <Command onClick={fillAnswer9}>
-          Hiện đáp án 9
-        </Command>
-        
-        <Command onClick={fillAllAnswersProvider}>Điền toàn bộ câu trả lời</Command>
-        <Command onClick={resetProvider}>Reset</Command>
+        <CrosswordMessageBlock>
+          <Commands>
+            <Command onClick={fillAnswer1}>Hiện đáp án 1</Command>
+            <Command onClick={fillAnswer2}>Hiện đáp án 2</Command>
+            <Command onClick={fillAnswer3}>Hiện đáp án 3</Command>
+            <Command onClick={fillAnswer4}>Hiện đáp án 4</Command>
+            <Command onClick={fillAnswer5}>Hiện đáp án 5</Command>
+            <Command onClick={fillAnswer6}>Hiện đáp án 6</Command>
+            <Command onClick={fillAnswer7}>Hiện đáp án 7</Command>
+            <Command onClick={fillAnswer8}>Hiện đáp án 8</Command>
+            <Command onClick={fillAnswer9}>Hiện đáp án 9</Command>
+            <Command onClick={fillAnswer10}>Hiện đáp án 10</Command>
+            <Command onClick={fillAllAnswersProvider}>
+              Điền toàn bộ câu trả lời
+            </Command>
+            <Command onClick={resetProvider}>Reset</Command>
+          </Commands>
 
-      </Commands>
-        <CrosswordProviderWrapper>
-          <CrosswordProvider
-            ref={crosswordProvider}
-            data={data}
-            theme={{
-              gridBackground: "rgba(255, 255, 255, .0)",
-              cellBackground: "rgb(0, 83, 236)",
-              cellBorder: "#441151",
-              textColor: "rgb(255,255,255)",
-              numberColor: "rgb(255,255,255)",
-              focusBackground: "rgb(227, 17, 49)",
-              highlightBackground: "rgb(227, 17, 49)",
-            }}
-            storageKey="second-example"
-            onCorrect={onCorrectProvider}
-            onLoadedCorrect={onLoadedCorrectProvider}
-            onCrosswordCorrect={onCrosswordCorrectProvider}
-            onCellChange={onCellChangeProvider}
-          >
-            <CrosswordGrid />
-          </CrosswordProvider>
-        </CrosswordProviderWrapper>
-      
-      </CrosswordMessageBlock>
-      
-    </Page>
+          <CrosswordProviderWrapper>
+            <CrosswordProvider
+              ref={crosswordProvider}
+              data={data}
+              theme={{
+                gridBackground: "rgba(255, 255, 255, .0)",
+                cellBackground: "rgb(0, 83, 236)",
+                cellBorder: "#441151",
+                textColor: "rgb(255,255,255)",
+                numberColor: "rgb(255,255,255)",
+                focusBackground: "rgb(227, 17, 49)",
+                highlightBackground: "rgb(227, 17, 49)",
+              }}
+              storageKey="second-example"
+              onCorrect={onCorrectProvider}
+              onLoadedCorrect={onLoadedCorrectProvider}
+              onCrosswordCorrect={onCrosswordCorrectProvider}
+              onCellChange={onCellChangeProvider}
+            >
+              <CrosswordGrid />
+            </CrosswordProvider>
+          </CrosswordProviderWrapper>
+        </CrosswordMessageBlock>
+      </Page>
     </div>
   );
 }
