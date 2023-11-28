@@ -40,8 +40,8 @@
   background-image: url(./img/NCB1.png), url(./img/Teller.png);
   background-size: 400px 130px;
   background-position:
-    10% 10%,
-    90% 15%;
+    2% 2%,
+    98% 2%;
   background-repeat: no-repeat;
   justify-content: center;
   align-items: center;
@@ -51,5 +51,13 @@
   justify-content: center;
 }
 .headerPage {
-  font-size: 2rem;
+  font-size: 5rem;
+}
+.question ol li {
+  padding: 1.2rem;
+  font-size: 25px;
+}
+.question {
+  width: 800px;
+  padding: 1.2rem;
 }
