@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect,ReactNode, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  ReactNode,
+  useRef,
+  useState,
+} from "react";
 import logo1 from "./img/NCB1.png";
 import logo2 from "./img/Teller.png";
 import Crossword, {
@@ -36,71 +42,82 @@ const data = {
   across: {
     1: {
       clue: "one plus one",
-      answer: "TACPHONG",
+      answer: "KHIENTRACH",
       row: 0,
-      col: 5,
+      col: 2,
     },
     2: {
       clue: "one plus one",
-      answer: "ANPHAT",
+      answer: "RANGCUA",
       row: 1,
-      col: 4,
+      col: 2,
     },
     3: {
       clue: "one plus one",
-      answer: "LAMCHUCONGNGHE",
+      answer: "DOANHNGHIEP",
       row: 2,
-      col: 2,
+      col: 7,
     },
     4: {
       clue: "one plus one",
-      answer: "QUANLY",
+      answer: "TICHLUY",
       row: 3,
       col: 2,
     },
     5: {
       clue: "one plus one",
-      answer: "BAOVETAISAN",
+      answer: "UYNHIEMCHI",
       row: 4,
-      col: 3,
+      col: 6,
     },
     6: {
       clue: "one plus one",
-      answer: "CONSO",
+      answer: "WELCOMECALL",
       row: 5,
-      col: 5,
+      col: 0,
     },
     7: {
       clue: "one plus one",
-      answer: "HATXAM",
+      answer: "CUCHI",
       row: 6,
-      col: 2,
+      col: 4,
     },
     8: {
       clue: "one plus one",
-      answer: "KIEMSOAT",
+      answer: "TRUNGTHANH",
       row: 7,
-      col: 6,
+      col: 5,
     },
     9: {
       clue: "one plus one",
-      answer: "BANHCHUNG",
+      answer: "DANDA",
       row: 8,
-      col: 5,
+      col: 4,
     },
     10: {
       clue: "one plus one",
-      answer: "CHUYENKHOAN",
+      answer: "CAMCO",
       row: 9,
-      col: 0,
+      col: 3,
     },
-    
+    11: {
+      clue: "one plus one",
+      answer: "TIENMAT",
+      row: 10,
+      col: 4,
+    },
+    12: {
+      clue: "one plus one",
+      answer: "VANDUNG",
+      row: 11,
+      col: 1,
+    },
     // Add more across clues as needed
   },
   down: {
-    11: {
+    13: {
       clue: "one plus one",
-      answer: "CHUYENMINH",
+      answer: "TUDUYCHUDONG",
       row: 0,
       col: 7,
     },
@@ -134,7 +151,7 @@ const CrosswordMessageBlock = styled.div`
   margin: 2em 0 4em;
   display: flex;
   gap: 30em;
-  padding-top: 10rem;
+  padding-top: 5rem;
 `;
 
 const CrosswordWrapper = styled.div`
@@ -181,7 +198,7 @@ const CrosswordProviderWrapper = styled(CrosswordWrapper)`
   .grid {
     width: 60em;
 
-    padding-top: 5rem;
+    padding-top: 8rem;
   }
 `;
 
@@ -236,7 +253,7 @@ function App() {
     (direction, number, answer) => {
       addMessage(`onCorrect: "${direction}", "${number}", "${answer}"`);
     },
-    [addMessage]
+    [addMessage],
   );
 
   // onLoadedCorrect is called with an array of the already-correct answers,
@@ -250,12 +267,12 @@ function App() {
         `onLoadedCorrect:\n${answers
           .map(
             ([direction, number, answer]) =>
-              `    - "${direction}", "${number}", "${answer}"`
+              `    - "${direction}", "${number}", "${answer}"`,
           )
-          .join("\n")}`
+          .join("\n")}`,
       );
     },
-    [addMessage]
+    [addMessage],
   );
 
   // onCrosswordCorrect is called with a truthy/falsy value.
@@ -265,7 +282,7 @@ function App() {
     (isCorrect) => {
       addMessage(`onCrosswordCorrect: ${JSON.stringify(isCorrect)}`);
     },
-    [addMessage]
+    [addMessage],
   );
 
   // Update your existing revealRowAnswer function
@@ -275,168 +292,172 @@ function App() {
     (row, col, char) => {
       addMessage(`onCellChange: "${row}", "${col}", "${char}"`);
     },
-    [addMessage]
+    [addMessage],
   );
 
   // all the same functionality, but for the decomposed CrosswordProvider
   const crosswordProvider = useRef<CrosswordProviderImperative>(null);
   const fillAnswer1 = useCallback<React.MouseEventHandler>((event) => {
-    crosswordProvider.current?.setGuess(0, 5, "T");
-    crosswordProvider.current?.setGuess(0, 6, "A");
-    crosswordProvider.current?.setGuess(0, 7, "C");
-    crosswordProvider.current?.setGuess(0, 8, "P");
-    crosswordProvider.current?.setGuess(0, 9, "H");
-    crosswordProvider.current?.setGuess(0, 10, "O");
-    crosswordProvider.current?.setGuess(0, 11, "N");
-    crosswordProvider.current?.setGuess(0, 12, "G");
-   
+    crosswordProvider.current?.setGuess(0, 2, "K");
+    crosswordProvider.current?.setGuess(0, 3, "H");
+    crosswordProvider.current?.setGuess(0, 4, "I");
+    crosswordProvider.current?.setGuess(0, 5, "E");
+    crosswordProvider.current?.setGuess(0, 6, "N");
+    crosswordProvider.current?.setGuess(0, 7, "T");
+    crosswordProvider.current?.setGuess(0, 8, "R");
+    crosswordProvider.current?.setGuess(0, 9, "A");
+    crosswordProvider.current?.setGuess(0, 10, "C");
+    crosswordProvider.current?.setGuess(0, 11, "H");
   }, []);
 
   const fillAnswer2 = useCallback<React.MouseEventHandler>((event) => {
-    crosswordProvider.current?.setGuess(1, 4, "A");
-    crosswordProvider.current?.setGuess(1, 5, "N");
-    crosswordProvider.current?.setGuess(1, 6, "P");
-    crosswordProvider.current?.setGuess(1, 7, "H");
+    crosswordProvider.current?.setGuess(1, 2, "R");
+    crosswordProvider.current?.setGuess(1, 3, "A");
+    crosswordProvider.current?.setGuess(1, 4, "N");
+    crosswordProvider.current?.setGuess(1, 5, "G");
+    crosswordProvider.current?.setGuess(1, 6, "C");
+    crosswordProvider.current?.setGuess(1, 7, "U");
     crosswordProvider.current?.setGuess(1, 8, "A");
-    crosswordProvider.current?.setGuess(1, 9, "T");
   }, []);
   const fillAnswer3 = useCallback<React.MouseEventHandler>((event) => {
-    crosswordProvider.current?.setGuess(2, 2, "L");
-    crosswordProvider.current?.setGuess(2, 3, "A");
-    crosswordProvider.current?.setGuess(2, 4, "M");
-    crosswordProvider.current?.setGuess(2, 5, "C");
-    crosswordProvider.current?.setGuess(2, 6, "H");
-    crosswordProvider.current?.setGuess(2, 7, "U");
-    crosswordProvider.current?.setGuess(2, 8, "C");
-    crosswordProvider.current?.setGuess(2, 9, "O");
+    crosswordProvider.current?.setGuess(2, 7, "D");
+    crosswordProvider.current?.setGuess(2, 8, "O");
+    crosswordProvider.current?.setGuess(2, 9, "A");
     crosswordProvider.current?.setGuess(2, 10, "N");
-    crosswordProvider.current?.setGuess(2, 11, "G");
+    crosswordProvider.current?.setGuess(2, 11, "H");
     crosswordProvider.current?.setGuess(2, 12, "N");
     crosswordProvider.current?.setGuess(2, 13, "G");
     crosswordProvider.current?.setGuess(2, 14, "H");
-    crosswordProvider.current?.setGuess(2, 15, "E");
-   
-    
+    crosswordProvider.current?.setGuess(2, 15, "I");
+    crosswordProvider.current?.setGuess(2, 16, "E");
+    crosswordProvider.current?.setGuess(2, 17, "P");
   }, []);
   const fillAnswer4 = useCallback<React.MouseEventHandler>((event) => {
-    crosswordProvider.current?.setGuess(3, 2, "Q");
-    crosswordProvider.current?.setGuess(3, 3, "U");
-    crosswordProvider.current?.setGuess(3, 4, "A");
-    crosswordProvider.current?.setGuess(3, 5, "N");
+    crosswordProvider.current?.setGuess(3, 2, "T");
+    crosswordProvider.current?.setGuess(3, 3, "I");
+    crosswordProvider.current?.setGuess(3, 4, "C");
+    crosswordProvider.current?.setGuess(3, 5, "H");
     crosswordProvider.current?.setGuess(3, 6, "L");
-    crosswordProvider.current?.setGuess(3, 7, "Y");
-  
-  
+    crosswordProvider.current?.setGuess(3, 7, "U");
+    crosswordProvider.current?.setGuess(3, 8, "Y");
   }, []);
 
   const fillAnswer5 = useCallback<React.MouseEventHandler>((event) => {
-    crosswordProvider.current?.setGuess(4, 3, "B");
-    crosswordProvider.current?.setGuess(4, 4, "A");
-    crosswordProvider.current?.setGuess(4, 5, "O");
-    crosswordProvider.current?.setGuess(4, 6, "V");
-    crosswordProvider.current?.setGuess(4, 7, "E");
-    crosswordProvider.current?.setGuess(4, 8, "T");
-    crosswordProvider.current?.setGuess(4, 9, "A");
+    crosswordProvider.current?.setGuess(4, 6, "U");
+    crosswordProvider.current?.setGuess(4, 7, "Y");
+    crosswordProvider.current?.setGuess(4, 8, "N");
+    crosswordProvider.current?.setGuess(4, 9, "H");
     crosswordProvider.current?.setGuess(4, 10, "I");
-    crosswordProvider.current?.setGuess(4, 11, "S");
-    crosswordProvider.current?.setGuess(4, 12, "A");
-    crosswordProvider.current?.setGuess(4, 13, "N");
-    
+    crosswordProvider.current?.setGuess(4, 11, "E");
+    crosswordProvider.current?.setGuess(4, 12, "M");
+    crosswordProvider.current?.setGuess(4, 13, "C");
+    crosswordProvider.current?.setGuess(4, 14, "H");
+    crosswordProvider.current?.setGuess(4, 15, "I");
   }, []);
 
   const fillAnswer6 = useCallback<React.MouseEventHandler>((event) => {
-    crosswordProvider.current?.setGuess(5, 5, "C");
-    crosswordProvider.current?.setGuess(5, 6, "O");
-    crosswordProvider.current?.setGuess(5, 7, "N");
-    crosswordProvider.current?.setGuess(5, 8, "S");
-    crosswordProvider.current?.setGuess(5, 9, "O");
-   
+    crosswordProvider.current?.setGuess(5, 0, "W");
+    crosswordProvider.current?.setGuess(5, 1, "E");
+    crosswordProvider.current?.setGuess(5, 2, "L");
+    crosswordProvider.current?.setGuess(5, 3, "C");
+    crosswordProvider.current?.setGuess(5, 4, "O");
+    crosswordProvider.current?.setGuess(5, 5, "M");
+    crosswordProvider.current?.setGuess(5, 6, "E");
+    crosswordProvider.current?.setGuess(5, 7, "C");
+    crosswordProvider.current?.setGuess(5, 8, "A");
+    crosswordProvider.current?.setGuess(5, 9, "L");
+    crosswordProvider.current?.setGuess(5, 10, "L");
   }, []);
   const fillAnswer7 = useCallback<React.MouseEventHandler>((event) => {
-    crosswordProvider.current?.setGuess(6, 2, "H");
-    crosswordProvider.current?.setGuess(6, 3, "A");
-    crosswordProvider.current?.setGuess(6, 4, "T");
-    crosswordProvider.current?.setGuess(6, 5, "X");
-    crosswordProvider.current?.setGuess(6, 6, "A");
-    crosswordProvider.current?.setGuess(6, 7, "M");
-  
+    crosswordProvider.current?.setGuess(6, 4, "C");
+    crosswordProvider.current?.setGuess(6, 5, "U");
+    crosswordProvider.current?.setGuess(6, 6, "C");
+    crosswordProvider.current?.setGuess(6, 7, "H");
+    crosswordProvider.current?.setGuess(6, 8, "I");
   }, []);
 
   const fillAnswer8 = useCallback<React.MouseEventHandler>((event) => {
-    crosswordProvider.current?.setGuess(7, 6, "K");
-    crosswordProvider.current?.setGuess(7, 7, "I");
-    crosswordProvider.current?.setGuess(7, 8, "E");
-    crosswordProvider.current?.setGuess(7, 9, "M");
-    crosswordProvider.current?.setGuess(7, 10, "S");
-    crosswordProvider.current?.setGuess(7, 11, "O");
+    crosswordProvider.current?.setGuess(7, 5, "T");
+    crosswordProvider.current?.setGuess(7, 6, "R");
+    crosswordProvider.current?.setGuess(7, 7, "U");
+    crosswordProvider.current?.setGuess(7, 8, "N");
+    crosswordProvider.current?.setGuess(7, 9, "G");
+    crosswordProvider.current?.setGuess(7, 10, "T");
+    crosswordProvider.current?.setGuess(7, 11, "H");
     crosswordProvider.current?.setGuess(7, 12, "A");
-    crosswordProvider.current?.setGuess(7, 13, "T");
-   
-   
-   
+    crosswordProvider.current?.setGuess(7, 13, "N");
+    crosswordProvider.current?.setGuess(7, 14, "H");
   }, []);
 
   const fillAnswer9 = useCallback<React.MouseEventHandler>((event) => {
-    crosswordProvider.current?.setGuess(8, 5, "B");
-    crosswordProvider.current?.setGuess(8, 6, "A");
-    crosswordProvider.current?.setGuess(8, 7, "N");
-    crosswordProvider.current?.setGuess(8, 8, "H");
-    crosswordProvider.current?.setGuess(8, 9, "C");
-    crosswordProvider.current?.setGuess(8, 10, "H");
-    crosswordProvider.current?.setGuess(8, 11, "U");
-    crosswordProvider.current?.setGuess(8, 12, "N");
-    crosswordProvider.current?.setGuess(8, 13, "G");
-    
+    crosswordProvider.current?.setGuess(8, 4, "D");
+    crosswordProvider.current?.setGuess(8, 5, "A");
+    crosswordProvider.current?.setGuess(8, 6, "N");
+    crosswordProvider.current?.setGuess(8, 7, "D");
+    crosswordProvider.current?.setGuess(8, 8, "A");
   }, []);
 
   const fillAnswer10 = useCallback<React.MouseEventHandler>((event) => {
-    crosswordProvider.current?.setGuess(9, 0, "C");
-    crosswordProvider.current?.setGuess(9, 1, "H");
-    crosswordProvider.current?.setGuess(9, 2, "U");
-    crosswordProvider.current?.setGuess(9, 3, "Y");
-    crosswordProvider.current?.setGuess(9, 4, "E");
-    crosswordProvider.current?.setGuess(9, 5, "N");
-    crosswordProvider.current?.setGuess(9, 6, "K");
-    crosswordProvider.current?.setGuess(9, 7, "H");
-    crosswordProvider.current?.setGuess(9, 8, "O");
-    crosswordProvider.current?.setGuess(9, 9, "A");
-    crosswordProvider.current?.setGuess(9, 10, "N");
+    crosswordProvider.current?.setGuess(9, 3, "C");
+    crosswordProvider.current?.setGuess(9, 4, "A");
+    crosswordProvider.current?.setGuess(9, 5, "M");
+    crosswordProvider.current?.setGuess(9, 6, "C");
+    crosswordProvider.current?.setGuess(9, 7, "O");
   }, []);
   const fillAnswer11 = useCallback<React.MouseEventHandler>((event) => {
-    crosswordProvider.current?.setGuess(0, 7, "C");
-    crosswordProvider.current?.setGuess(1, 7, "H");
-    crosswordProvider.current?.setGuess(2, 7, "U");
-    crosswordProvider.current?.setGuess(3, 7, "Y");
-    crosswordProvider.current?.setGuess(4, 7, "E");
-    crosswordProvider.current?.setGuess(5, 7, "N");
-    crosswordProvider.current?.setGuess(6, 7, "M");
-    crosswordProvider.current?.setGuess(7, 7, "I");
-    crosswordProvider.current?.setGuess(8, 7, "N");
-    crosswordProvider.current?.setGuess(9, 7, "H");
-  
+    crosswordProvider.current?.setGuess(10, 4, "T");
+    crosswordProvider.current?.setGuess(10, 5, "I");
+    crosswordProvider.current?.setGuess(10, 6, "E");
+    crosswordProvider.current?.setGuess(10, 7, "N");
+    crosswordProvider.current?.setGuess(10, 8, "M");
+    crosswordProvider.current?.setGuess(10, 9, "A");
+    crosswordProvider.current?.setGuess(10, 10, "T");
+  }, []);
+  const fillAnswer12 = useCallback<React.MouseEventHandler>((event) => {
+    crosswordProvider.current?.setGuess(11, 1, "V");
+    crosswordProvider.current?.setGuess(11, 2, "A");
+    crosswordProvider.current?.setGuess(11, 3, "N");
+    crosswordProvider.current?.setGuess(11, 4, "D");
+    crosswordProvider.current?.setGuess(11, 5, "U");
+    crosswordProvider.current?.setGuess(11, 6, "N");
+    crosswordProvider.current?.setGuess(11, 7, "G");
+  }, []);
+  const fillAnswer13 = useCallback<React.MouseEventHandler>((event) => {
+    crosswordProvider.current?.setGuess(0, 7, "T");
+    crosswordProvider.current?.setGuess(1, 7, "U");
+    crosswordProvider.current?.setGuess(2, 7, "D");
+    crosswordProvider.current?.setGuess(3, 7, "U");
+    crosswordProvider.current?.setGuess(4, 7, "Y");
+    crosswordProvider.current?.setGuess(5, 7, "C");
+    crosswordProvider.current?.setGuess(6, 7, "H");
+    crosswordProvider.current?.setGuess(7, 7, "U");
+    crosswordProvider.current?.setGuess(8, 7, "D");
+    crosswordProvider.current?.setGuess(9, 7, "O");
+    crosswordProvider.current?.setGuess(10, 7, "N");
+    crosswordProvider.current?.setGuess(11, 7, "G");
   }, []);
   const fillAllAnswersProvider = useCallback<React.MouseEventHandler>(
     (event) => {
       crosswordProvider.current?.fillAllAnswers();
     },
-    []
+    [],
   );
   type ToggleTextButtonProps = {
     children: ReactNode;
   };
-  
+
   // The ToggleTextButton component with TypeScript
   const ToggleTextButton: React.FC<ToggleTextButtonProps> = ({ children }) => {
     const [isVisible, setIsVisible] = useState(false);
-  
+
     const toggleVisibility = () => {
       setIsVisible(!isVisible);
     };
-  
+
     return (
       <div>
         <button onClick={toggleVisibility}>
-          {isVisible ? 'Ẩn Câu Hỏi' : 'Hiện Câu Hỏi'}
+          {isVisible ? "Ẩn Câu Hỏi" : "Hiện Câu Hỏi"}
         </button>
         {isVisible && <div>{children}</div>}
       </div>
@@ -456,7 +477,7 @@ function App() {
     (event) => {
       setMessagesProvider([]);
     },
-    []
+    [],
   );
 
   const addMessageProvider = useCallback((message: string) => {
@@ -478,7 +499,7 @@ function App() {
     (direction, number, answer) => {
       addMessageProvider(`onCorrect: "${direction}", "${number}", "${answer}"`);
     },
-    [addMessageProvider]
+    [addMessageProvider],
   );
 
   // onLoadedCorrect is called with an array of the already-correct answers,
@@ -492,12 +513,12 @@ function App() {
         `onLoadedCorrect:\n${answers
           .map(
             ([direction, number, answer]) =>
-              `    - "${direction}", "${number}", "${answer}"`
+              `    - "${direction}", "${number}", "${answer}"`,
           )
-          .join("\n")}`
+          .join("\n")}`,
       );
     },
-    [addMessageProvider]
+    [addMessageProvider],
   );
 
   // onCrosswordCorrect is called with a truthy/falsy value.
@@ -507,7 +528,7 @@ function App() {
     (isCorrect) => {
       addMessageProvider(`onCrosswordCorrect: ${JSON.stringify(isCorrect)}`);
     },
-    [addMessageProvider]
+    [addMessageProvider],
   );
 
   // onCellChange is called with the row, column, and character.
@@ -517,7 +538,7 @@ function App() {
     (row, col, char) => {
       addMessageProvider(`onCellChange: "${row}", "${col}", "${char}"`);
     },
-    [addMessageProvider]
+    [addMessageProvider],
   );
 
   return (
@@ -526,7 +547,7 @@ function App() {
         <Header className="headerPage">PHẦN THI VƯỢT QUA THỬ THÁCH</Header>
 
         <CrosswordMessageBlock>
-        <Commands>
+          <Commands>
             <Command onClick={fillAnswer1}>Hiện đáp án 1</Command>
             <Command onClick={fillAnswer2}>Hiện đáp án 2</Command>
             <Command onClick={fillAnswer3}>Hiện đáp án 3</Command>
@@ -537,8 +558,9 @@ function App() {
             <Command onClick={fillAnswer8}>Hiện đáp án 8</Command>
             <Command onClick={fillAnswer9}>Hiện đáp án 9</Command>
             <Command onClick={fillAnswer10}>Hiện đáp án 10</Command>
-            <Command onClick={fillAnswer11}>Đáp án ô chữ bí ẩn</Command>
-            
+            <Command onClick={fillAnswer11}>Hiện đáp án 11</Command>
+            <Command onClick={fillAnswer12}>Hiện đáp án 12</Command>
+            <Command onClick={fillAnswer13}>Đáp án ô chữ bí ẩn</Command>
 
             <Command onClick={resetProvider}>Reset</Command>
           </Commands>
@@ -567,20 +589,75 @@ function App() {
           <div className="question">
             <h1>Câu Hỏi</h1>
             <ol>
-              <li><ToggleTextButton>Không làm việc riêng khi có Khách hàng là thể hiện tiêu chí nào trong bộ tiêu chuẩn CLDV?</ToggleTextButton></li> 
-              <li><ToggleTextButton>Tên sản phẩm tiền gửi tiết kiệm trong đó khách hàng có cam kết về thời gian gửi tiền?</ToggleTextButton></li>
-              <li><ToggleTextButton>Đây là tên Năng lực cốt lõi thứ 3?</ToggleTextButton></li>
-              <li><ToggleTextButton>Điền từ vào dấu … để hoàn thiện tên một trong 05 năng lực lãnh đạo: "… sự thay đổi"?</ToggleTextButton></li>
-              <li><ToggleTextButton>Tên Điều 26 trong NQLĐ trong đó có quy định: Người lao động có trách nhiệm bảo vệ phương tiện làm việc và các tài sản khác của NCB trong suốt quá trình làm việc tại NCB?</ToggleTextButton></li>
-              <li><ToggleTextButton>Theo cách gọi của người Việt Nam, nhà hát Opera còn có tên gọi khác là gì?</ToggleTextButton></li>
-              <li><ToggleTextButton>Tên loại hình nghệ thuật khi nhắc đến nghệ nhân Hà Thị Cầu?</ToggleTextButton></li>
-              <li><ToggleTextButton>Một khâu quan trọng giúp hạn chế sai lỗi phát sinh trong giao dịch?</ToggleTextButton></li>
-              <li><ToggleTextButton>Cái gì trong trắng ngoài xanh, trồng đậu trồng hành rồi thả heo vào?</ToggleTextButton></li>
-              <li><ToggleTextButton>Một hình thức thanh toán không dùng tiền mặt?</ToggleTextButton></li>
-              
-             
+              <li>
+                <ToggleTextButton>
+                  Thực hiện sai chức năng, nhiệm vụ được giao nhưng chưa gây
+                  thiệt hại cho NCB thì chịu hình thức xử lý kỷ luật gì?
+                </ToggleTextButton>
+              </li>
+              <li>
+                <ToggleTextButton>
+                  Ngà voi là bộ phận nào biến đổi thành?
+                </ToggleTextButton>
+              </li>
+              <li>
+                <ToggleTextButton>
+                  Đây là tên gọi chung của loại hình tổ chức kinh tế tham gia
+                  vào các hoạt động kinh doanh nhằm mục đích tạo ra lợi nhuận?
+                </ToggleTextButton>
+              </li>
+              <li>
+                <ToggleTextButton>
+                  Một sản phẩm tiết kiệm của NCB cho phép nộp thêm tiền vào sổ
+                  đã gửi?
+                </ToggleTextButton>
+              </li>
+              <li>
+                <ToggleTextButton>
+                  Một loại mẫu biểu để chuyển tiền từ tài khoản của khách hàng?
+                </ToggleTextButton>
+              </li>
+              <li>
+                <ToggleTextButton>
+                  Để nâng cao CLDV và xác minh thông tin khách hàng sau khi sử
+                  dụng dịch vụ, trong tháng 10 Khối Vận hành ban hành thông báo
+                  triển khai hoạt động gì?
+                </ToggleTextButton>
+              </li>
+              <li>
+                <ToggleTextButton>
+                  Tên một địa đạo nổi tiếng của Việt Nam với hệ thống đường hầm
+                  dầy đặc?
+                </ToggleTextButton>
+              </li>
+              <li>
+                <ToggleTextButton>
+                  Đây là tên giá trị cốt lõi thứ nhất trong 5 giá trị cốt lõi
+                  của NCB?
+                </ToggleTextButton>
+              </li>
+              <li>
+                <ToggleTextButton>
+                  Đây là tên 1 loại đàn cổ của Tây Nguyên?
+                </ToggleTextButton>
+              </li>
+              <li>
+                <ToggleTextButton>
+                  Một sản phẩm cho vay sổ tiết kiệm hiện nay?
+                </ToggleTextButton>
+              </li>
+              <li>
+                <ToggleTextButton>
+                  Một trong những phương thức thanh toán phổ biến tại Việt Nam?
+                </ToggleTextButton>
+              </li>
+              <li>
+                <ToggleTextButton>
+                  Tên cấp độ thứ 3 trong Năng lực cốt lõi và Năng lực lãnh đạo?
+                </ToggleTextButton>
+              </li>
             </ol>
-            <h3> </h3> 
+            <h3> </h3>
             <h3></h3>
           </div>
         </CrosswordMessageBlock>
